@@ -26,7 +26,7 @@ pipeline {
         stage("build image") {
             steps {
                 script {
-                    buildImage ('janetcruzangel/demo-app:jma-3.0')
+                    buildImage 'janetcruzangel/demo-app:jma-3.0'
                 }
             }
         }
