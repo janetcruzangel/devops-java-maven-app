@@ -27,6 +27,8 @@ pipeline {
             steps {
                 script {
                     buildImage 'janetcruzangel/demo-app:jma-3.0'
+					buildLogin()
+					buildPush 'janetcruzangel/demo-app:jma-3.0'
                 }
             }
         }
