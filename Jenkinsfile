@@ -1,5 +1,13 @@
 #!/user/bin/env groovy
-@Library('jenkins-shared-library') //the name of shared library configured in Jenkins
+//the name of a global shared library configured in Jenkins
+//@Library('jenkins-shared-library@main') 
+//@Library('jenkins-shared-library@2.0') 
+
+//when we want to reference a jenkisn shared lib from Git
+library identifier: 'devops-jenkins-shared-library@main', retriever: modernSCM(
+        [$class: 'GitSCMSource',
+        remote: 'https://github.com/janetcruzangel/devops-jenkins-shared-library.git',
+        credentialsId: 'github-credentials'])
 def gv
 pipeline {
     agent any
