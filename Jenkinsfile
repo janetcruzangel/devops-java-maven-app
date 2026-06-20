@@ -20,7 +20,7 @@ pipeline {
                        def version = matcher[0][1]
                        //$BUILD-NUMBER is a Jenkins env variable in the current pipeline job
                        //env.IMAGE_NAME is another jenkins env variable
-                       env.IMAGE_NAME = "$version-$BUILD-NUMBER"
+                       env.IMAGE_NAME = "${version}-${env.BUILD-NUMBER}"
                     }
                 }
             }
@@ -41,8 +41,8 @@ pipeline {
                         sh '''
                             echo Logging in to Docker Hub with username: $DOCKER_USERNAME"
                             echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-                            docker build -t janetcruzangel/demo-app:$IMAGE_NAME .
-                            docker push janetcruzangel/demo-app:$IMAGE_NAME
+                            docker build -t janetcruzangel/demo-app:${IMAGE_NAME} .
+                            docker push janetcruzangel/demo-app:${IMAGE_NAME}
                         '''
                     }
                 }
