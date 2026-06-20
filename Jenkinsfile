@@ -41,8 +41,8 @@ pipeline {
                         sh '''
                             echo Logging in to Docker Hub with username: $DOCKER_USERNAME"
                             echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-                            docker build -t janetcruzangel/demo-app:${IMAGE_NAME} .
-                            docker push janetcruzangel/demo-app:${IMAGE_NAME}
+                            docker build -t janetcruzangel/demo-app:${env.IMAGE_NAME} .
+                            docker push janetcruzangel/demo-app:${env.IMAGE_NAME}
                         '''
                     }
                 }
