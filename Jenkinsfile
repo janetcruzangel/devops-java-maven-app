@@ -70,7 +70,7 @@ pipeline {
                         sh 'git config --global user.email "jenkins@example.com"'
                         sh 'git config --global user.name "jenkins"'
                         
-                        sh 'git status"
+                        sh 'git status'
                         sh 'git branch'
                         sh 'git config --list'
                         //connect to GIT repo from local repo to the remote one
