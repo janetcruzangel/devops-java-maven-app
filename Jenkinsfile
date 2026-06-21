@@ -20,7 +20,7 @@ pipeline {
                        def version = matcher[0][1]
                        //$BUILD-NUMBER is a Jenkins env variable in the current pipeline job
                        //env.IMAGE_NAME is another jenkins env variable
-                       env.IMAGE_NAME = "${version}-${env.BUILD-NUMBER}"
+                       env.IMAGE_NAME = "${version}-${env.BUILD_NUMBER}"
                     }
                 }
             }
