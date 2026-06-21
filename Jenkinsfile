@@ -53,11 +53,33 @@ pipeline {
                 }
             }
         }
-
         stage("deploy") {
             steps {
                 script {
-                    echo 'deploying app'
+                    echo 'deploying docker image'
+                }
+            }
+        }
+        stage("commit version update") {
+            steps {
+                script {
+                    echo 'committing version update'
+                    withCredentials([usernamePassword(credentialsId: 'github-credentials', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                        //to avoid Git complains when commiting, this has to be setup just the first time
+                        //--global is for all repos and the lack of it applies config just to this repo
+                        sh 'git config --global user.email "jenkins@example.com"'
+                        sh 'git config --global user.name "jenkins"'
+                        
+                        sh 'git status"
+                        sh 'git branch'
+                        sh 'git config --list'
+                        //connect to GIT repo from local repo to the remote one
+                        sh "git remote set-url origin https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/janetcruzangel/devops-java-maven-app.git"
+                        sh 'git add .'
+                        sh 'git commit -m "ci: version bump"'
+                        //csend changes to remote
+                        sh 'git push origin HEAD:increment-version'
+                    }
                 }
             }
         }
