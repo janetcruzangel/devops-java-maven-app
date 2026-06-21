@@ -37,13 +37,18 @@ pipeline {
             steps {
                 script {
                     echo 'building the docker image...'
+                    /**
+                    Converted to """: Jenkins now reads and replaces the variables before handing the script over to the system shell.
+                    Removed env. from Credentials: DOCKER_USERNAME and DOCKER_PASSWORD are referenced directly since they are generated locally by withCredentials.
+                    Retained env. for IMAGE_NAME: Kept env.IMAGE_NAME because it comes from your global pipeline environment setup.
+                    */
                     withCredentials([usernamePassword(credentialsId: 'docker-hub-repo', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
-                        sh '''
-                            echo Logging in to Docker Hub with username: ${env.DOCKER_USERNAME}"
-                            echo ${env.DOCKER_PASSWORD} | docker login -u ${env.DOCKER_USERNAME} --password-stdin
+                        sh """
+                            echo "Logging in to Docker Hub with username: ${DOCKER_USERNAME}"
+                            echo "${DOCKER_PASSWORD}" | docker login -u ${DOCKER_USERNAME} --password-stdin
                             docker build -t janetcruzangel/demo-app:${env.IMAGE_NAME} .
                             docker push janetcruzangel/demo-app:${env.IMAGE_NAME}
-                        '''
+                        """
                     }
                 }
             }
