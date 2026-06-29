@@ -31,7 +31,7 @@ pipeline {
                     echo "Building the docker image for the java application"
                     buildImage(env.IMAGE_NAME)
                     dockerLogin()
-                    docker(env.IMAGE_NAME)
+                    dockerPush(env.IMAGE_NAME)
                 }
             }
         }
