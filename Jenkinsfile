@@ -1,5 +1,5 @@
 #!/user/bin/env groovy
-@Library('jenkins-shared-library') //the name of shared library configured in Jenkins
+//@Library('jenkins-shared-library') //the name of shared library configured in Jenkins
 def gv
 pipeline {
     agent any
@@ -17,7 +17,7 @@ pipeline {
         stage("build jar") {
             steps {
                 script {
-                    buildJar()
+                    echo "Building the application..."
 
                 }
             }
@@ -26,7 +26,7 @@ pipeline {
         stage("build image") {
             steps {
                 script {
-                    buildImage()
+                   echo "Building the image..."
                 }
             }
         }
