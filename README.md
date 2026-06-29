@@ -1,6 +1,6 @@
 # Project Name: devops-java-maven-app
 
-This repository serves a **didactic purpose** to demonstrate automated deployment pipelines. It contains an external application alongside my custom deployment configuration.
+This repository serves a **didactic purpose** to demonstrate automated deployment pipelines and the used of a shared jenkins library. It contains an external application alongside my custom deployment configuration.
 
 ## ⚠️ Important Disclaimer & Code Ownership
 
