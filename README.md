@@ -5,7 +5,7 @@ This repository serves a **didactic purpose** to demonstrate automated deploymen
 ## ⚠️ Important Disclaimer & Code Ownership
 
 * **Source Code Ownership:** I do not own the application source code found in the `/src` (or relevant) directory.
-* **Original Creator:** All rights to the application code belong entirely to the original author, **Nana Janashia/Techworld with Nana]**.
+* **Original Creator:** All rights to the application code belong entirely to the original author, **Nana Janashia/Techworld with Nana**.
 * **Original Repository:** You can view the authentic project at the https://gitlab.com/twn-devops-bootcamp/latest/08-jenkins/java-maven-app.
 * **My Contribution:** I am solely responsible for creating, testing, and maintaining the **deployment scripts and DevOps automation infrastructure** found in this repository.
 * **Purpose:** This project is hosted strictly for educational, self-learning, and portfolio demonstration purposes.
