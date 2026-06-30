@@ -58,7 +58,7 @@ pipeline {
                     // It requires the yaml file and the flag ---detach for detached mode
                     // def dockerCompose = "docker-compose -f docker-compose.yaml up --detach"
                     // Variable that holds script shell file to execute by docker-compose
-                    def shellCmd = "bash ./server-cmds.sh ${IMAGE_NAME}"
+                    def shellCmd = "bash ./server-cmds.sh ${env.IMAGE_NAME}"
                     def ec2Instance = "ec2-user@3.137.154.143"
                     sshagent(['ec2-server-key']) {
                         // copies shell script into EC2 user's home directory
