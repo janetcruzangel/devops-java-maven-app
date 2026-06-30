@@ -1,7 +1,9 @@
 version: '3.8'
 services:
   java-maven-app:
-    image: janetcruzangel/demo-app:java-maven-1.0
+    # image: janetcruzangel/demo-app:java-maven-1.0
+    # use the shell env variable to set the image name at runtime instead of hard-coding it like above line
+    image: {IMAGE}
     ports:
       - 8080:8080
   postgres:

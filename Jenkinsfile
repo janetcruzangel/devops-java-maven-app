@@ -39,14 +39,18 @@ pipeline {
         stage("deploy") {
             steps {
                 script {
-                    //Define a variable holding docker-compose command
-                    //It requires the yaml file and the flag ---detach for detached mode
-                    def dockerCompose = "docker-compose -f docker-compose.yaml up --detach"
+                    // Define a variable holding docker-compose command
+                    // It requires the yaml file and the flag ---detach for detached mode
+                    // def dockerCompose = "docker-compose -f docker-compose.yaml up --detach"
+                    // Variable that holds script shell file to execute by docker-compose
+                    def shellCmd = "bash ./server-cmds.sh ${IMAGE_NAME}"
                     sshagent(['ec2-server-key']) {
+                        // copies shell script into EC2 user's home directory
+                        sh 'scp server-cmds.sh ec2-user@3.137.154.143:/home/ec2-user'
                         // copies docker-compose.yaml into EC2 user's home directory
                         sh 'scp docker-compose.yaml ec2-user@3.137.154.143:/home/ec2-user'
                         // This scripts assumes docker login has been already executed in the EC2 instance and Firewall allows traffic to 3080
-                        sh "ssh -o StrictHostKeyChecking=no ec2-user@3.137.154.143 ${dockerCompose}"
+                        sh "ssh -o StrictHostKeyChecking=no ec2-user@3.137.154.143 ${shellCmd}"
                     }
                 }
             }
