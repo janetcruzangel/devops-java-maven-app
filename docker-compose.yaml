@@ -1,0 +1,13 @@
+version: '3'.8'
+services:
+  java-maven-app:
+    image: janetcruzangel/demo-app:java-maven-1.0
+    ports:
+      - 8080:8080
+  postgres:
+    image: postgres:15-alpine
+    ports:
+      - 5432:5432
+    environment:
+      # environment variables list can be found in the image documentation
+      - POSTGRES_PASSWORD=my-pwd #can be set o any wanted value
